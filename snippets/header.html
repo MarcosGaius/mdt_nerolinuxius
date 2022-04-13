@@ -1,0 +1,34 @@
+<div class="header flex-column">
+    <nav class="header navbar navbar-expand-lg navbar-dark" style="background-color:#021427;">
+        <div class="container-fluid">
+            <div class="navbar-brand" onclick="loadDashboard();">
+                <img src="images/logo2_sm.png" alt="LAPD" width="60" height="60"><span class="p-3" style="font-weight:600;">LAPD</span>
+            </div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active text-center" href="#" id="inicio-menu" onclick="loadDashboard();">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="#" id="cidadao-menu" onclick="loadCitizen();">Pesquisar cidadão</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="#" id="veiculo-menu" onclick="loadVehicle();">Pesquisar veículo</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="#" id="multas-menu" onclick="loadFines();">Catálogo de multas</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="#" id="oficiais-menu" onclick="loadLeo();">Quadro de oficiais</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-center" href="#" id="mandados-menu" onclick="loadWarrant();">Mandados</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</div>
