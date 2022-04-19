@@ -74,6 +74,7 @@ Seguem prints das áreas do MDT:
   **Pesquisa de Mandados**
   ![enter image description here](https://i.imgur.com/UI33VLY.png)
 ![enter image description here](https://i.imgur.com/vnZgngu.png)
+
 **Webhooks**
 
 Ao adicionar e remover multas, o webhook do Discord é acionado.
