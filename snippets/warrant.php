@@ -20,6 +20,7 @@
                     <th scope="col">Tipo</th>
                     <th scope="col">Status</th>
                     <th scope="col">Detalhes</th>
+                    <th scope="col">Excluir</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -42,6 +43,7 @@
                                 echo "<td>".$warrant['type']."</td>";
                                 echo "<td>".$warrant['completed']."</td>";
                                 echo "<td>".'<p class="fst-italic text-decoration-underline link-primary m-0" onclick="loadWarrDetails('.$id.');" style="cursor: pointer;">Ver mais</p>'."</td>";
+                                echo '<td><button type="button" class="btn btn-danger btn-sm" onclick="delWarr('.$id.')"><i class="bi bi-x-lg"></i></button></td>';
                             echo "</tr>";
                         }
                     ?>
@@ -53,7 +55,6 @@
                   if(mysqli_num_rows($result) == 0){
                     echo '<p class="h5 text-light text-center m-4">Nenhum registro encontrado!</p>';
                   }
-                
               ?>
         </div>
     </div>

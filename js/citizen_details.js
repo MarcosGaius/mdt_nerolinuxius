@@ -47,6 +47,7 @@ textArea.addEventListener('focusout', textAreaHandler);
 
 function addFine(data){
     let fineId = document.getElementById("inputGroupSelect01").selectedIndex;
+    let fineContent = document.getElementById("inputGroupSelect01").options[fineId].innerHTML;
     let sender = rdmTextLogin;
 
     const fineData = new FormData();
@@ -54,25 +55,104 @@ function addFine(data){
     fineData.append('fine-id', fineId);
     fineData.append('sender', sender);
 
+    let discordHook = "";
+    let hookData = {
+        "content": "",
+        "embeds": [{
+            "title": "MULTA ADICIONADA",
+            "description": `${sender} multou o ID ${data}: ${fineContent}`,
+            "color": 307668,
+            "timestamp": new Date(),
+            "footer": {
+                "text": "MDT running on Nero Linuxius",
+                "icon_url": "https://i.imgur.com/oqXmWPp.png"
+            },
+            "fields": [{
+                "name": "Agente",
+                "value": `${sender}`,
+                "inline": "false"
+            },
+            {
+                "name": "ID do Infrator",
+                "value": `${data}`,
+                "inline": "false"
+            },
+            {
+                "name": "Descrição e valor da multa",
+                "value": `${fineContent}`,
+                "inline": "false"
+            }]
+        }]
+    }
 
     fetch('../php/citizen_add_fine.php', {
         method: 'POST',
         body: fineData
     })
-    .then( () => {return;})
+    .then( () => {
+        fetch(discordHook, {
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            method: 'POST',
+            body: JSON.stringify(hookData)
+        })
+        .catch( (err) => {console.error(err); });       
+        })
     .then( () => { loadCitizenDetails(data); })
     .catch( (err) => {console.error(err); });
 }
 
-function delFine(fineId, citId){
+function delFine(fineId, citId){ 
     const delData = new FormData();
     delData.append('id', fineId);
+
+    let discordHook = "";
+    let sender = rdmTextLogin;
+    let fineDesc = document.getElementById(`btn-${fineId}`).parentElement.firstChild.innerHTML;
+    let hookData = {
+        content: "",
+        embeds: [{
+            "title": "MULTA REMOVIDA",
+            "description": `${sender} removeu uma multa do ID ${citId}: ${fineDesc}`,
+            "color": 12063272,
+            "timestamp": new Date(),
+            "footer": {
+                "text": "MDT running on Nero Linuxius",
+                "icon_url": "https://i.imgur.com/oqXmWPp.png"
+            },
+            "fields": [{
+                "name": "Agente",
+                "value": `${sender}`,
+                "inline": "false"
+            },
+            {
+                "name": "ID do Infrator",
+                "value": `${citId}`,
+                "inline": "false"
+            },
+            {
+                "name": "Descrição e valor da multa",
+                "value": `${fineDesc}`,
+                "inline": "false"
+            }]
+        }]
+    }
 
     fetch('../php/del_fine.php', {
         method: 'POST',
         body: delData
     })
-    .then( () => {return;})
+    .then( () => {
+        fetch(discordHook, {
+           headers: {
+               'Content-Type': 'application/json'
+           },
+           method: 'POST',
+           body: JSON.stringify(hookData)
+        })
+        .catch( (err) => {console.error(err); });  
+    })
     .then( () => { loadCitizenDetails(citId); })
     .catch( (err) => {console.error(err); });
 }

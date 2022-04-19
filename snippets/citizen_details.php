@@ -150,7 +150,7 @@
                                     $result = mysqli_query($conn, $sql);
 
                                     if(mysqli_num_rows($result) == 0){
-                                        echo '<p class="my-auto text-center">Nenhuma multa encontrada!</p>';
+                                        echo '<p class="my-auto text-center text-white">Nenhuma multa encontrada!</p>';
                                     }
                                     else{
                                         while($cit_fines = mysqli_fetch_assoc($result)){
@@ -159,7 +159,7 @@
     
                                             echo '<li class="list-group-item p-0 py-1 px-2 d-flex border rounded border-dark justify-content-between">';
                                             echo '<p class="my-auto">'.$cit_fines['label'].' - R$ '.$cit_fines['amount'].' ('.date_format($date,"d/m/Y").') | Agente: '.$cit_fines['sender'].'</p>';
-                                            echo '<button type="button" class="btn btn-danger btn-sm" onclick="delFine('.$cit_fines['id'].','.$data.')"><i class="bi bi-x-lg"></i></button>';
+                                            echo '<button type="button" class="btn btn-danger btn-sm" id="btn-'.$cit_fines['id'].'" onclick="delFine('.$cit_fines['id'].','.$data.')"><i class="bi bi-x-lg"></i></button>';
                                             echo '</li>';
                                         }
                                     }
