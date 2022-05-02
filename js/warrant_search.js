@@ -20,7 +20,7 @@ function delWarr(data){
     const delData = new FormData();
     delData.append('id', identifier);
 
-    let discordHook = "https://discord.com/api/webhooks/964224681194426408/ikaLZ911GDYa3R1diLPPzWzVFzvs8SjMB2fuhqhDMhpAbHgbcONdlqq8OeLz6JQKjwCy";
+    let discordHook = "";
     const hookData = JSON.stringify({
         "content": `${rdmTextLogin} deletou o Mandado de ID ${identifier}!`,
         "avatar_url": 'https://thumbs.dreamstime.com/b/x-red-mark-cross-sign-graphic-symbol-crossed-brush-strokes-red-mark-cross-sign-graphic-symbol-154904211.jpg'
